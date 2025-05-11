@@ -1,7 +1,7 @@
 use bon::Builder;
 use std::time::Duration;
 
-#[derive(Builder, Clone)]
+#[derive(Debug, Clone, Builder)]
 pub struct Keepalive {
     #[builder(default)]
     interval: Duration,
@@ -18,8 +18,9 @@ impl Default for Keepalive {
     }
 }
 
-#[derive(Clone, Builder)]
+#[derive(Debug, Clone, Builder)]
 pub struct Configuration {
+    #[builder(default = Configuration::default().client_id)]
     pub client_id: String,
     pub inactivity_timeout: Option<Duration>,
     pub keepalive: Option<Keepalive>,

@@ -1,3 +1,4 @@
-mod client;
-mod configuration;
-mod session;
+pub mod client;
+pub mod configuration;
+pub mod session;
+pub mod key;
