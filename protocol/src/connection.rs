@@ -10,7 +10,7 @@ impl<T: AsyncRead + AsyncWrite + Unpin + Send> Stream for T {}
 impl<T: AsyncRead + AsyncWrite + Unpin + Send + AsyncBufRead> BufferedStream for T {}
 
 pub struct AsyncConnection<S: BufferedStream> {
-    stream: S,
+    pub stream: S,
 }
 
 impl<S: BufferedStream> From<S> for AsyncConnection<S> {

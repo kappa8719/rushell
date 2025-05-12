@@ -1,10 +1,9 @@
-mod error;
+mod arch;
 mod connection;
-mod key;
+mod error;
 mod kex;
-mod messages;
+mod key;
 
 pub use connection::*;
 pub use error::*;
 pub use key::*;
-pub use messages::*;

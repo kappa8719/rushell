@@ -1,7 +1,7 @@
 use crate::configuration::Configuration;
 use log::{debug, info};
 use protocol::AsyncConnection;
-use tokio::io::{BufReader, BufStream};
+use tokio::io::{AsyncBufReadExt, AsyncReadExt, BufReader, BufStream};
 
 #[derive(Clone)]
 pub struct Client {
@@ -32,6 +32,15 @@ impl Client {
         let server_id = connection.read_server_id().await.unwrap();
 
         info!("received server id: {}", server_id.clone());
+
+        loop {
+            let mut buf = Vec::new();
+            if connection.stream.read(buf.as_mut_slice()).await.unwrap() == 0 {
+                break;
+            }
+
+            info!("{buf:?}");
+        }
 
         // create channels for handle and session
         // let (handle_sender, session_receiver) = tokio::sync::mpsc::channel(10);

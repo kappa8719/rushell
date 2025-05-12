@@ -8,3 +8,4 @@ bon.workspace = true
 tokio.workspace = true
 thiserror.workspace = true
 log.workspace = true
+bincode.workspace = true
